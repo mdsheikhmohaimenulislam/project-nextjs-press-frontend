@@ -32,7 +32,7 @@ export default function RegisterForm() {
 
     console.log(formData);
 
-    // এখানে API Call করবে
+   
   };
 
   return (
