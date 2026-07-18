@@ -1,7 +1,10 @@
-import React from "react";
+
 import LoginFrom from "../_components/LoginFrom";
 
 const LoginPage = () => {
+
+
+
   return (
     <>
       <div className="flex min-h-screen items-center justify-center">
