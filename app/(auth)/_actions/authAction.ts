@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 type LoginState = {
   success: true;
@@ -50,7 +50,7 @@ export const loginAction = async (
       sameSite: "lax",
     });
 
-    redirect("/dashboard");
+    // redirect("/dashboard");
   }
 
   return result;
