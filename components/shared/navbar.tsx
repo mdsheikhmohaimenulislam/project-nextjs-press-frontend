@@ -94,7 +94,7 @@ export function Navbar({user} : NavbarProps) {
 
           {/* User Dropdown */}
           {
-            user.success ? (
+            // user.success ? (
                 <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="cursor-pointer">
@@ -136,11 +136,11 @@ export function Navbar({user} : NavbarProps) {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-            ) : <Link href={"/login"} >
-                   <Button className="cursor-pointer">
-                        Login
-                   </Button>
-            </Link>
+            // ) : <Link href={"/login"} >
+            //        <Button className="cursor-pointer">
+            //             Login
+            //        </Button>
+            // </Link>
           }
         </div>
       </div>
