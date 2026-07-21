@@ -67,7 +67,7 @@ export function Navbar({ user }: NavbarProps) {
       router.push("/login");
     }
   };
-     
+       
   return (
     <nav className="border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
