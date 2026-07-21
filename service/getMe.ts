@@ -1,5 +1,6 @@
 "use server";
 import { cookies } from "next/headers";
+import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 
 export const getMe = async () => {
   const cookieStore = await cookies();
@@ -21,6 +22,12 @@ export const getMe = async () => {
       //   Authorization: `Bearer ${accessToken}`,
 
       cookie: `accessToken=${accessToken}`,
+    },
+
+    cache: "force-cache",
+    next: {
+      revalidate: 60 * 60 * 24, // 1day
+      tags: ["my-profile"],
     },
   });
 
