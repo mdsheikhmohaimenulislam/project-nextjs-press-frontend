@@ -1,7 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
-// import { redirect } from "next/navigation";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { redirect } from "next/navigation";
 
 type LoginState = {
   success: true;
@@ -50,7 +51,15 @@ export const loginAction = async (
       sameSite: "lax",
     });
 
-    // redirect("/dashboard");
+    const decodedToken = jwt.decode(result.data.accessToken) as JwtPayload;
+
+    if (decodedToken.role === "USER") {
+      redirect("/dashboard");
+    } else if (decodedToken.role === "ADMIN") {
+      redirect("/admin-dashboard");
+    } else if (decodedToken.role === "AUTHOR") {
+      redirect("/author-dashboard");
+    }
   }
 
   return result;
