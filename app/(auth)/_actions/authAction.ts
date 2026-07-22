@@ -51,6 +51,7 @@ export const loginAction = async (
       sameSite: "lax",
     });
 
+    
     const decodedToken = jwt.decode(result.data.accessToken) as JwtPayload;
 
     if (decodedToken.role === "USER") {
