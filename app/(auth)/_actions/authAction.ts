@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 type LoginState = {
   success: true;
@@ -51,7 +52,6 @@ export const loginAction = async (
       sameSite: "lax",
     });
 
-    
     const decodedToken = jwt.decode(result.data.accessToken) as JwtPayload;
 
     if (decodedToken.role === "USER") {
