@@ -33,6 +33,7 @@ export const subscribePremium = async () => {
         if(result.success && result.data.paymentUrl){
             redirect(result.data.paymentUrl)
         }
+        
 
         return result
 }

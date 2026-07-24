@@ -1,48 +1,55 @@
-"use server"
+"use server";
 
 import { cookies } from "next/headers";
 
-export const getPremiumNews = async ({query } : { query?: { [key: string]: string | string[] | undefined } }) => {
+export const getPremiumNews = async ({
+  query,
+}: {
+  query?: { [key: string]: string | string[] | undefined };
+}) => {
+  // Bad Approach
+  // const searchTerm = `${search?.searchTerm ? `?searchTerm=${search.searchTerm}` : ""}`;
 
-    // Bad Approach
-    // const searchTerm = `${search?.searchTerm ? `?searchTerm=${search.searchTerm}` : ""}`;
+  const params = new URLSearchParams();
 
-    const params = new URLSearchParams()
+  if (query && query.searchTerm) {
+    params.set("searchTerm", query.searchTerm as string);
+  }
 
-    if(query && query.searchTerm){
-        params.set("searchTerm", query.searchTerm as string)
-    }
+  //  /premium?searchTerm=nextjs
+  const cookieStore = await cookies();
 
-    //  /premium?searchTerm=nextjs
-     const cookieStore = await cookies();
-    
-        const accessToken = cookieStore.get("accessToken")?.value || null;
-    
-        if(!accessToken){
-            // throw new Error("User Not Logged In!");
-    
-            return {
-                success : false,
-                message : "User not logged in!"
-            }
-        }
+  const accessToken = cookieStore.get("accessToken")?.value || null;
+  console.log("Access Token:", accessToken);
 
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/premium?${params.toString()}`, {
-        headers: {
-            // Authorization : accessToken as unknown as string,
-            // Authorization : `${accessToken}`,
-            // Authorization : `Bearer ${accessToken}`
+  if (!accessToken) {
+    // throw new Error("User Not Logged In!");
 
-            Cookie: `accessToken=${accessToken}`
-        },
-        cache : "no-cache",
-        next : {
-            revalidate : 60 * 60 * 6,
-            tags : ["premium-posts"]
-        }
-    });
+    return {
+      success: false,
+      message: "User not logged in!",
+    };
+  }
 
-    const result = await res.json();
+  const url = params.toString()
+    ? `${process.env.BACKEND_API_URL}/api/Premium?${params.toString()}`
+    : `${process.env.BACKEND_API_URL}/api/Premium`;
 
-    return result;
-}
+  console.log(url);
+
+  const res = await fetch(url, {
+    headers: {
+      Cookie: `accessToken=${accessToken}`,
+    },
+    cache: "no-store",
+  });
+
+  const result = await res.json();
+console.log(
+  "NEXT RESULT:",
+  JSON.stringify(result, null, 2)
+);
+
+
+  return result;
+};
