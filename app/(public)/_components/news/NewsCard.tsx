@@ -15,11 +15,6 @@ export function NewsCard({ post }: NewsCardProps) {
     return (
       <Card className="gap-4">
         {post.thumbnail && (
-          // <img
-          //     src={post.thumbnail}
-          //     alt={post.title}
-          //     className="h-48 w-full object-cover"
-          // />
           <Image
             src={post.thumbnail}
             unoptimized
