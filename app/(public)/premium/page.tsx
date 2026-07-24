@@ -21,9 +21,14 @@ const PremiumPage = async ({
         <NewsSearchBar />
       </div>
 
+
+
       <Suspense fallback={<NewsSkeleton />}>
         <PremiumNewsList searchParams={searchParams} />
       </Suspense>
+
+
+      
     </div>
   );
 };
