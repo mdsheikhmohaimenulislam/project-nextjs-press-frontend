@@ -82,6 +82,7 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
 
 
 
+
                     <div className="space-y-2">
                         <Label htmlFor="thumbnail">Thumbnail URL</Label>
                         <Input
