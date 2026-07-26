@@ -33,6 +33,7 @@ export default function DashboardSidebar({user} : NavbarProps) {
      navItems = sidebarMenuItems.ADMIN;
   }
 
+  
   return (
     <Sidebar
       collapsible="none"
