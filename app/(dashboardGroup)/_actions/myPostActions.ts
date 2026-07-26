@@ -137,6 +137,7 @@ export const getMyPosts = async () => {
     //   tags: ["my-post"],
     // },
   });
-  const result = res.json();
+  const result = await res.json();
+   console.log("MY POSTS RESULT:", result);
   return result;
 };

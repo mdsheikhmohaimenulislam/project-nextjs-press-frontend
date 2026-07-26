@@ -5,10 +5,16 @@ import { Input } from "@/components/ui/input";
 import React, { useActionState, useEffect } from "react";
 import { loginAction } from "../_actions/authAction";
 import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 // import { useRouter } from "next/navigation";
 
 const LoginFrom = () => {
-  const [state, action, pending] = useActionState(loginAction, false);
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") ?? "";
+  const [state, action, pending] = useActionState(
+    loginAction.bind(null, redirectTo),
+    false,
+  );
   // const router = useRouter();
 
   useEffect(() => {

@@ -1,8 +1,7 @@
 import { Suspense } from "react";
-import { PostFormDialog } from "../../_components/PostFormDialog";
 import { MyPostsList } from "../../_components/MyPostList";
 import { MyPostsSkeleton } from "../../_components/MyPostSkeleton";
-
+import { PostFormDialog } from "../../_components/PostFormDialog";
 
 const UserMyPostsPage = () => {
   return (
